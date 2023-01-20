@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.io.*;
 import java.util.Random;
 
+
 public class Bird {
 
     public String name;
@@ -12,16 +13,20 @@ public class Bird {
     public boolean independence = false;
 
     public Bird(String name){
+
         this.name = name;
         System.out.println("");  
         System.out.println("ピヨピヨ🦜"+ name + "は嬉しそうに鳴いた");
+
     }
 
     public void teach() throws InterruptedException,IOException{
+
         //出力を遅らせるということは動作を妨げることと同じため、InterruptedExceptionを入れ,例外処理を行う。
         //IOExceptionは入出力の管理
 
         if(satisfaction <= 100){
+
             System.out.println( name + "は言葉を覚えたいみたい!");
             Thread.sleep(1000);
             System.out.println("言葉を教えましょう\n→");
@@ -34,6 +39,10 @@ public class Bird {
             satisfaction += satisfaction + s;
 
             if ((health >= 100) && (satisfaction >= 100)){
+                
+                independence = true;
+                int index = new Random().nextInt(words.size());
+                String lastWord = words.get(index);
                 Thread.sleep(1000);
                 System.out.println(name + "は元気に成長しきった");
                 Thread.sleep(1000);
@@ -43,27 +52,112 @@ public class Bird {
                 Thread.sleep(1000);
                 System.out.print(".");
                 System.out.println("");
-                System.out.println(name + "は"+ );
+                System.out.println(name + "は" + lastWord + "と言って羽ばたいた"  );
+                Thread.sleep(1000);
+                System.out.println("");
+                System.out.println("これで" + name + "との生活は幕を閉じた");
+                Thread.sleep(1000);
+                System.out.println("");
+                System.out.println("Thank you for playing 🦜");
             }
         }
-        else(satisfaction >= 100){
-            System.out.println( name + "は興味を示していないようだ");
+
+        else if(satisfaction >= 100){
+
+            System.out.println( name + "は興味を示していないようだ");        
         }
-
-
     }
 
-    public void feed() throws InterruptedException{
-        System.out.println( name + "は餌を食べたいみたい!");
-        Thread.sleep(1000);
-        System.out.println("");
+    public void feed() throws InterruptedException, IOException{
 
+        if(health <= 100){
+
+            System.out.println( name + "は餌を食べたいみたい!何をあげますか?s");
+            Thread.sleep(1000);
+            System.out.println("1:りんご  2:ピーナッツ  3:ぶどう 数字を入力しよう!");
+            System.out.println("");
+            Random food = new Random();
+            int wantedFood = food.nextInt(4) + 1; //wantedFoodの中身は1から3となる
+            BufferedReader whatFood = new BufferedReader(new InputStreamReader(System.in));
+            int givenFood =Integer.parseInt(whatFood.readLine());
+
+
+                if( givenFood >=1 && givenFood <= 3){
+
+                    if(wantedFood==givenFood){
+
+                        Random healthPoint = new Random();
+                        int gainedHealth = healthPoint.nextInt(10) + 30;
+                        health += health + gainedHealth;
+
+                        if ((health >= 100) && (satisfaction >= 100)){
+                
+                            independence = true;
+                            int index = new Random().nextInt(words.size());
+                            String lastWord = words.get(index);
+                            Thread.sleep(1000);
+                            System.out.println(name + "は元気に成長しきった");
+                            Thread.sleep(1000);
+                            System.out.print(".");
+                            Thread.sleep(1000);
+                            System.out.print(".");
+                            Thread.sleep(1000);
+                            System.out.print(".");
+                            System.out.println("");
+                            System.out.println(name + "は" + lastWord + "と言って羽ばたいた"  );
+                            Thread.sleep(1000);
+                            System.out.println("");
+                            System.out.println("これで" + name + "との生活は幕を閉じた");
+                            Thread.sleep(1000);
+                            System.out.println("");
+                            System.out.println("Thank you for playing 🦜");     
+                        }               
+                    }
+
+                    else{
+
+                        Random healthPoint2 = new Random();
+                        int gainedHealth2 = healthPoint2.nextInt(10) + 11;
+                        health += health + gainedHealth2;
+                        
+                        if ((health >= 100) && (satisfaction >= 100)){
+                
+                            independence = true;
+                            int index = new Random().nextInt(words.size());
+                            String lastWord = words.get(index);
+                            Thread.sleep(1000);
+                            System.out.println(name + "は元気に成長しきった");
+                            Thread.sleep(1000);
+                            System.out.print(".");
+                            Thread.sleep(1000);
+                            System.out.print(".");
+                            Thread.sleep(1000);
+                            System.out.print(".");
+                            System.out.println("");
+                            System.out.println(name + "は" + lastWord + "と言って羽ばたいた"  );
+                            Thread.sleep(1000);
+                            System.out.println("");
+                            System.out.println("これで" + name + "との生活は幕を閉じた");
+                            Thread.sleep(1000);
+                            System.out.println("");
+                            System.out.println("Thank you for playing 🦜");
+                        }
+                    }
+                }
+
+                else{
+
+                    System.out.println("1から3の数字を入力しよう");
+                }
+        }
+        else{
+
+            System.out.println(name + "はお腹が空いていないみたい");
+        }
     }
 
-
-
-
-
-    
-    
 }
+
+    
+    
+
