@@ -4,13 +4,22 @@ import java.io.*;
 import java.util.Random;
 
 
+
 public class Bird {
 
     public String name;
-    int health = 0;
-    int satisfaction = 0;
-    ArrayList<String> words = new ArrayList<>();
+    private int health = 0;
+    private int satisfaction = 0;
+    public ArrayList<String> words = new ArrayList<>();
     public boolean independence = false;
+
+    public int getHealth(){
+        return health;
+    }
+
+    public int getSatisfaction(){
+        return satisfaction;
+    }
 
     public Bird(String name){
 
@@ -38,32 +47,12 @@ public class Bird {
             int s = satPoint.nextInt(21) + 1; //満足度ポイントを1から20までの数から、ランダムに出したい
             satisfaction += satisfaction + s;
 
-            if ((health >= 100) && (satisfaction >= 100)){
-                
+            if ((health >= 100) && (satisfaction >= 100)){                
                 independence = true;
-                int index = new Random().nextInt(words.size());
-                String lastWord = words.get(index);
-                Thread.sleep(1000);
-                System.out.println(name + "は元気に成長しきった");
-                Thread.sleep(1000);
-                System.out.print(".");
-                Thread.sleep(1000);
-                System.out.print(".");
-                Thread.sleep(1000);
-                System.out.print(".");
-                System.out.println("");
-                System.out.println(name + "は" + lastWord + "と言って羽ばたいた"  );
-                Thread.sleep(1000);
-                System.out.println("");
-                System.out.println("これで" + name + "との生活は幕を閉じた");
-                Thread.sleep(1000);
-                System.out.println("");
-                System.out.println("Thank you for playing 🦜");
             }
         }
 
         else if(satisfaction >= 100){
-
             System.out.println( name + "は興味を示していないようだ");        
         }
     }
@@ -81,81 +70,36 @@ public class Bird {
             BufferedReader whatFood = new BufferedReader(new InputStreamReader(System.in));
             int givenFood =Integer.parseInt(whatFood.readLine());
 
-
                 if( givenFood >=1 && givenFood <= 3){
-
                     if(wantedFood==givenFood){
-
                         Random healthPoint = new Random();
                         int gainedHealth = healthPoint.nextInt(10) + 30;
                         health += health + gainedHealth;
 
-                        if ((health >= 100) && (satisfaction >= 100)){
-                
-                            independence = true;
-                            int index = new Random().nextInt(words.size());
-                            String lastWord = words.get(index);
-                            Thread.sleep(1000);
-                            System.out.println(name + "は元気に成長しきった");
-                            Thread.sleep(1000);
-                            System.out.print(".");
-                            Thread.sleep(1000);
-                            System.out.print(".");
-                            Thread.sleep(1000);
-                            System.out.print(".");
-                            System.out.println("");
-                            System.out.println(name + "は" + lastWord + "と言って羽ばたいた"  );
-                            Thread.sleep(1000);
-                            System.out.println("");
-                            System.out.println("これで" + name + "との生活は幕を閉じた");
-                            Thread.sleep(1000);
-                            System.out.println("");
-                            System.out.println("Thank you for playing 🦜");     
+                        if ((health >= 100) && (satisfaction >= 100)){              
+                            independence = true;  
                         }               
                     }
 
                     else{
-
                         Random healthPoint2 = new Random();
                         int gainedHealth2 = healthPoint2.nextInt(10) + 11;
                         health += health + gainedHealth2;
-                        
-                        if ((health >= 100) && (satisfaction >= 100)){
-                
+
+                        if ((health >= 100) && (satisfaction >= 100)){               
                             independence = true;
-                            int index = new Random().nextInt(words.size());
-                            String lastWord = words.get(index);
-                            Thread.sleep(1000);
-                            System.out.println(name + "は元気に成長しきった");
-                            Thread.sleep(1000);
-                            System.out.print(".");
-                            Thread.sleep(1000);
-                            System.out.print(".");
-                            Thread.sleep(1000);
-                            System.out.print(".");
-                            System.out.println("");
-                            System.out.println(name + "は" + lastWord + "と言って羽ばたいた"  );
-                            Thread.sleep(1000);
-                            System.out.println("");
-                            System.out.println("これで" + name + "との生活は幕を閉じた");
-                            Thread.sleep(1000);
-                            System.out.println("");
-                            System.out.println("Thank you for playing 🦜");
+
                         }
                     }
                 }
-
                 else{
-
                     System.out.println("1から3の数字を入力しよう");
                 }
         }
         else{
-
             System.out.println(name + "はお腹が空いていないみたい");
         }
     }
-
 }
 
     
